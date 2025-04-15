@@ -21,7 +21,7 @@ def fetch_webpage_content(url):
         return f"Error fetching content: {e}"
 
 def summarize_content(content):
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('gemini-2.0-flash')
     prompt = f"Extract the key information and generate a concise summary of the following web page content:\n{content}"
     response = model.generate_content(prompt)
     return response.text.strip()
