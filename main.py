@@ -4,8 +4,11 @@ from bs4 import BeautifulSoup
 import os
 import google.generativeai as genai
 
-# Set your Gemini 2.0 Flash API key here or use an environment variable
-GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', 'AIzaSyAfCe61__3gi7xIN_lJr-wNNXVFQyw9vL0')
+# Get Gemini 2.0 Flash API key from environment variable only
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
+if not GEMINI_API_KEY:
+    st.error("GEMINI_API_KEY environment variable not set. Please set it before running the app.")
+    st.stop()
 genai.configure(api_key=GEMINI_API_KEY)
 
 def fetch_webpage_content(url):
